@@ -1,0 +1,9 @@
+[Unit]
+Description=Update Route53 DDNS
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ruby /opt/local/ddns-update/update
+
+[Install]
+WantedBy=default.target

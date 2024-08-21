@@ -1,0 +1,11 @@
+[Unit]
+Description=xremap
+
+[Service]
+Restart=always
+ExecStartPre=setxkbmap -layout jp
+ExecStartPre=xset r rate 200 80
+
+# ExecStart=/home/dominic/.cargo/bin/xremap /home/dominic/src/github.com/dominic/dotfiles/config/xremap.yml --watch
+# ExecStart=/home/dominic/src/github.com/dominic/xremap/target/debug/xremap /home/dominic/src/github.com/dominic/dotfiles/config/xremap.yml
+ExecStart=/home/dominic/src/github.com/dominic/xremap/target/debug/xremap /home/dominic/src/github.com/dominic/dotfiles/config/xremap.yml --watch=device

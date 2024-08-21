@@ -1,0 +1,19 @@
+[user]
+	name = dsisnero
+	email = dsisnero@gmail.com
+[credential]
+	helper = manager
+[credential "helperselector"]
+	selected = manager
+[github]
+	user = dsisnero
+[core]
+	autocrlf = true
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[init]
+	defaultBranch = main
+[pull]
+	ff = true
+[safe]
+	directory = C:/windows_home/vcpkg

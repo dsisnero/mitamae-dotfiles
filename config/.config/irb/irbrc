@@ -1,0 +1,6 @@
+# require 'irb/ext/save-history'
+# require 'irb/completion'
+IRB.conf[:SAVE_HISTORY] = 200
+IRB.conf[:EVAL_HISTORY] = 3
+IRB.conf[:COMPLETOR] = :type
+	

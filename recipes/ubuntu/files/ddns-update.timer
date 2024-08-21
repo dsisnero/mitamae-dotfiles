@@ -1,0 +1,10 @@
+[Unit]
+Description=Timer to update Route53
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=1h
+Unit=ddns-update.service
+
+[Install]
+WantedBy=timers.target
