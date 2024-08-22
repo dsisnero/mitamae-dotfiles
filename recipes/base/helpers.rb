@@ -1,12 +1,12 @@
 define :dotfile do
-  if params[:name].is_a?(String)
-    links = { params[:name] => params[:name] }
+  links = if params[:name].is_a?(String)
+    {params[:name] => params[:name]}
   else
-    links = params[:name]
+    params[:name]
   end
 
   links.each do |link_from, link_to|
-    directory File.dirname(link_from = File.join(ENV['HOME'], link_from)) do
+    directory File.dirname(link_from = File.join(ENV["HOME"], link_from)) do
       user node[:user]
     end
 
@@ -20,26 +20,26 @@ end
 
 define :github_binary, version: nil, repository: nil, archive: nil, binary_path: nil do
   cmd = params[:name]
-  bin_path = "#{ENV['HOME']}/bin/#{cmd}"
+  bin_path = "#{ENV["HOME"]}/bin/#{cmd}"
   archive = params[:archive]
   url = "https://github.com/#{params[:repository]}/releases/download/#{params[:version]}/#{archive}"
 
-  if archive.end_with?('.zip')
-    package 'unzip' do
-      not_if 'which unzip'
+  if archive.end_with?(".zip")
+    package "unzip" do
+      not_if "which unzip"
     end
     extract = "unzip -o"
-  elsif archive.end_with?('.tar.gz')
+  elsif archive.end_with?(".tar.gz")
     extract = "tar xvzf"
-  elsif archive.end_with?('.appimage')
+  elsif archive.end_with?(".appimage")
     extract = "ls "
     params[:binary_path] = archive
-  url = "https://github.com/#{params[:repository]}/releases/latest/download/#{archive}"
+    url = "https://github.com/#{params[:repository]}/releases/latest/download/#{archive}"
   else
     raise "unexpected ext archive: #{archive}"
   end
 
-  directory "#{ENV['HOME']}/bin" do
+  directory "#{ENV["HOME"]}/bin" do
     owner node[:user]
   end
   execute "curl -fSL -o /tmp/#{archive} #{url}" do
@@ -54,28 +54,27 @@ define :github_binary, version: nil, repository: nil, archive: nil, binary_path:
   end
 end
 
-
-define :github_appimage, version: nil, repository: nil,  archive: nil, binary_path: nil do
+define :github_appimage, version: nil, repository: nil, archive: nil, binary_path: nil do
   cmd = params[:name]
-  bin_path = "#{ENV['HOME']}/bin/#{cmd}"
+  bin_path = "#{ENV["HOME"]}/bin/#{cmd}"
   archive = params[:archive]
   url = "https://github.com/#{params[:repository]}/releases/download/#{params[:version]}/#{archive}"
 
-  if archive.end_with?('.zip')
-    package 'unzip' do
-      not_if 'which unzip'
+  if archive.end_with?(".zip")
+    package "unzip" do
+      not_if "which unzip"
     end
     extract = "unzip -o"
-  elsif archive.end_with?('.tar.gz')
+  elsif archive.end_with?(".tar.gz")
     extract = "tar xvzf"
-  elsif archive.ends_with?('image')
-    extract = "" 
+  elsif archive.ends_with?("image")
+    extract = ""
     params[:binary_path] = archive
   else
     raise "unexpected ext archive: #{archive}"
   end
 
-  directory "#{ENV['HOME']}/bin" do
+  directory "#{ENV["HOME"]}/bin" do
     owner node[:user]
   end
   execute "curl -fSL -o /tmp/#{archive} #{url}" do

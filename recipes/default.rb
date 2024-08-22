@@ -3,4 +3,3 @@ puts "platform #{want}"
 include_recipe "base"
 include_recipe want
 package "vim"
-
