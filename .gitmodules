@@ -2,3 +2,6 @@
 	path = plugins/itamae-plugin-recipe-rust
 	url = https://github.com/itamae-plugins/itamae-plugin-recipe-rust.git
 	branch = main
+[submodule "plugins/itamae-plugin-recipe-nm_chruby"]
+	path = plugins/itamae-plugin-recipe-nm_chruby
+	url = https://github.com/namusyaka/itamae-plugin-recipe-nm_chruby.git
