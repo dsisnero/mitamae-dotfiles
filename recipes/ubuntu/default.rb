@@ -1,4 +1,6 @@
-dotfile ".config/nvim/init.lua"
+class Specinfra::Command::Pop < Specinfra::Command::Ubuntu
+end
+# dotfile ".config/nvim/init.lua"
 dotfile ".config/git/config"
 dotfile ".config/helix/config.toml"
 dotfile ".config/helix/languages.toml"
@@ -11,11 +13,13 @@ dotfile ".pryrc"
 dotfile ".railsrc"
 dotfile ".config/tmux/tmux.conf"
 dotfile ".config/tmux/tmux.conf.local" => ".tmux.conf.linux"
-
+include_recipe "neovim"
 include_recipe "systemd"
 # include_recipe "zsh"
+
 include_recipe "ruby"
 include_recipe "docker"
+include_recipe "rust"
 
 package "fzf"
 package "git"
@@ -31,7 +35,7 @@ end
 
 include_recipe "ssh-agent"
 # include_recipe "gpg-agent"
-include_recipe "ddns-update"
+# include_recipe "ddns-update"
 # include_recipe "xremap"
 
 # For dual boot Windows

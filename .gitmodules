@@ -1,0 +1,4 @@
+[submodule "plugins/itamae-plugin-recipe-rust"]
+	path = plugins/itamae-plugin-recipe-rust
+	url = https://github.com/itamae-plugins/itamae-plugin-recipe-rust.git
+	branch = main
