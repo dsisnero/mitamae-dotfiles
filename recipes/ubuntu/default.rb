@@ -1,6 +1,7 @@
 class Specinfra::Command::Pop < Specinfra::Command::Ubuntu
 end
 # dotfile ".config/nvim/init.lua"
+dotfile ".bashrc"
 dotfile ".config/git/config"
 dotfile ".config/helix/config.toml"
 dotfile ".config/helix/languages.toml"
@@ -17,15 +18,16 @@ include_recipe "neovim"
 include_recipe "systemd"
 # include_recipe "zsh"
 
-include_recipe "ruby"
-include_recipe "docker"
+include_recipe "rust::user"
 include_recipe "rust"
+include_recipe "docker"
 
 package "fzf"
 package "git"
 package "htop"
 package "tmux"
 package "xclip"
+package "golang"
 
 directory "#{ENV["HOME"]}/.config/systemd/user/default.target.wants" do
   owner node[:user]
@@ -42,6 +44,7 @@ include_recipe "ssh-agent"
 execute "timedatectl set-local-rtc true" do
   only_if "timedatectl status | grep 'RTC in local TZ: no'"
 end
+include_recipe "ruby"
 
 # Wireguard
 # remote_file "#{ENV["HOME"]}/.config/autostart/nm-applet.desktop" do

@@ -1,4 +1,6 @@
-include_recipe "rust::user"
+class Specinfra::Command::Pop < Specinfra::Command::Ubuntu
+end
+#include_recipe "rust::user"
 cargo_home = node[:rust][:cargo_home]
 cargo_cmd = "#{cargo_home}/bin/cargo"
 # define cargo_install command
@@ -13,6 +15,7 @@ define :cargo_install, version: nil, locked: true, path: nil, git: nil,
   cmd << " --features #{params[:features]}" if params[:features]
   cmd << " --locked" if params[:locked]
   execute "installing_cmd" do
+    user node[:user]
     command cmd
     not_if "test -e #{cargo_home}/bin/#{binname}"
   end
@@ -23,6 +26,7 @@ cargo_install "sccache"
 # add RUSTC_WRAPPER to .bashrc
 execute "add RUSTC_WRAPPER to .bashrc" do
   command "echo 'export RUSTC_WRAPPER=#{ENV["HOME"]}/.cargo/bin/sccache' >> #{ENV["HOME"]}/.bashrc"
+  command "source #{ENV['HOME']}/.bashrc"
   not_if "grep 'export RUSTC_WRAPPER' #{ENV["HOME"]}/.bashrc"
 end
 

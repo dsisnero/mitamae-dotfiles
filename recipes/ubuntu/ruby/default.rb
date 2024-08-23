@@ -1,4 +1,4 @@
-include_recipe 'nm_chruby/system'
+#include_recipe 'nm_chruby::system'
 
 dotfile ".config/irb/irbc"
 dotfile ".config/gem/gemrc"
