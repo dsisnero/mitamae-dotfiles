@@ -32,13 +32,31 @@ github_binary "lazygit" do
   binary_path "lazygit"
 end
 
-if node[:os] == 'linux'
+github_binary "rclone" do
+  repository "rclone/rclone"
+  version "v1.67.0"
+  archive "rclone-#{version}-linux-amd64.zip"
+  binary_path "rclone-#{version}-linux-amd64/rclone"
+end
+
+github_binary "gdrive" do
+  repository "glotlabs/gdrive"
+  version "3.9.1"
+  archive "gdrive_linux-x64.tar.gz"
+  binary_path "gdrive"
+end
+
+execute("rclone self-update --package deb") do
+  only_if "which rclone"
+end
+
+if node[:os] == "linux"
   dotfile ".bashrc"
 
   execute "source .bashrc" do
-    command ". #{ENV['HOME']}/.bashrc"
+    command ". #{ENV["HOME"]}/.bashrc"
   end
-  ENV['PATH'] = "/home/#{node[:user]}/bin:#{ENV['PATH']}"
+  ENV["PATH"] = "/home/#{node[:user]}/bin:#{ENV["PATH"]}"
 end
-puts "Path:/n#{ENV['PATH']}"
+puts "Path:/n#{ENV["PATH"]}"
 include_recipe "python"

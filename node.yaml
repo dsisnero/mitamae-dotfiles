@@ -1,3 +1,26 @@
+ruby:
+  versions:
+    - 3.3.4
+    - 3.2.5
+  packages:
+    - standardrb
+    - ruby-lsp
+    - solargraph
 rust:
   version: 1.80.1
   user: 'dominic'
+# node.yml
+goenv:
+  user: 'dominic'
+  global:
+    1.23.0
+  versions:
+    - 1.23.0
+    - 1.22.0
+
+  # specify scheme to use in git clone, optional (default: git)
+  scheme: https
+
+  # Create ~/.goenv/cache, optional (default: false)
+  # See: https://github.com/syndbg/goenv/tree/bae243f3771731897aafb152126976653cb8213c/plugins/go-build#package-download-caching
+  cache: true

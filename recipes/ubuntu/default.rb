@@ -14,20 +14,22 @@ dotfile ".pryrc"
 dotfile ".railsrc"
 dotfile ".config/tmux/tmux.conf"
 dotfile ".config/tmux/tmux.conf.local" => ".tmux.conf.linux"
-include_recipe "neovim"
-include_recipe "systemd"
-# include_recipe "zsh"
-
-include_recipe "rust::user"
-include_recipe "rust"
-include_recipe "docker"
 
 package "fzf"
 package "git"
 package "htop"
 package "tmux"
 package "xclip"
-package "golang"
+package "dos2unix"
+
+include_recipe "rust"
+include_recipe "neovim"
+include_recipe "systemd"
+# include_recipe "zsh"
+# include_recipe "postgresql"
+include_recipe "go"
+include_recipe "rust::user"
+include_recipe "docker"
 
 directory "#{ENV["HOME"]}/.config/systemd/user/default.target.wants" do
   owner node[:user]

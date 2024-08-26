@@ -1,11 +1,11 @@
 class Specinfra::Command::Pop < Specinfra::Command::Ubuntu
 end
-#include_recipe "rust::user"
+include_recipe "rust::user"
 cargo_home = node[:rust][:cargo_home]
 cargo_cmd = "#{cargo_home}/bin/cargo"
 # define cargo_install command
-define :cargo_install, version: nil, locked: true, path: nil, git: nil, 
-  features: nil, binname: nil  do
+define :cargo_install, version: nil, locked: true, path: nil, git: nil,
+  features: nil, binname: nil do
   cargo_name = params[:name]
   binname = params[:binname] || params[:name]
   cmd = "#{cargo_cmd} install #{cargo_name}"
@@ -26,16 +26,16 @@ cargo_install "sccache"
 # add RUSTC_WRAPPER to .bashrc
 execute "add RUSTC_WRAPPER to .bashrc" do
   command "echo 'export RUSTC_WRAPPER=#{ENV["HOME"]}/.cargo/bin/sccache' >> #{ENV["HOME"]}/.bashrc"
-  command "source #{ENV['HOME']}/.bashrc"
+  command "source #{ENV["HOME"]}/.bashrc"
   not_if "grep 'export RUSTC_WRAPPER' #{ENV["HOME"]}/.bashrc"
 end
 
 cargo_install "cargo-update" do
- locked false
+  locked false
 end
 
 cargo_install "broot" do
- features "clipboard,trash"
+  features "clipboard,trash"
 end
 
 cargo_install "du-dust"

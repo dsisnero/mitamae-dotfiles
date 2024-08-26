@@ -5,3 +5,9 @@
 [submodule "plugins/itamae-plugin-recipe-nm_chruby"]
 	path = plugins/itamae-plugin-recipe-nm_chruby
 	url = https://github.com/namusyaka/itamae-plugin-recipe-nm_chruby.git
+[submodule "plugins/itamae-plugin-recipe-postgresql"]
+	path = plugins/itamae-plugin-recipe-postgresql
+	url = https://github.com/maedadev/itamae-plugin-recipe-postgresql.git
+[submodule "plugins/itamae-plugin-recipe-goenv"]
+	path = plugins/itamae-plugin-recipe-goenv
+	url = https://github.com/civitaspo/itamae-plugin-recipe-goenv.git

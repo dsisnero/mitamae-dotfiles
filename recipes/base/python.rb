@@ -1,4 +1,3 @@
-
 github_binary "uv" do
   repository "astral-sh/uv"
   version "0.3.1"
