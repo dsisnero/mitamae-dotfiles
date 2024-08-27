@@ -24,6 +24,7 @@ package "dos2unix"
 
 include_recipe "rust"
 include_recipe "neovim"
+include_recipe "node"
 include_recipe "systemd"
 # include_recipe "zsh"
 # include_recipe "postgresql"

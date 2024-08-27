@@ -11,3 +11,6 @@
 [submodule "plugins/itamae-plugin-recipe-goenv"]
 	path = plugins/itamae-plugin-recipe-goenv
 	url = https://github.com/civitaspo/itamae-plugin-recipe-goenv.git
+[submodule "plugins/mitamae-plugin-resource-apt-repository"]
+	path = plugins/mitamae-plugin-resource-apt-repository
+	url = https://github.com/moritzheiber/mitamae-plugin-resource-apt-repository.git
