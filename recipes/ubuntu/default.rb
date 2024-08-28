@@ -15,6 +15,14 @@ dotfile ".railsrc"
 dotfile ".config/tmux/tmux.conf"
 dotfile ".config/tmux/tmux.conf.local" => ".tmux.conf.linux"
 
+encrypted_remote_file "/home/#{node[:user]}/.ssh/gitlab_ed25519" do
+  owner node[:user]
+  group node[:user]
+  mode "600"
+  source "config/.ssh/gitlab_ed25519.encrypted"
+  password ENV["MITAMAE_PASSWORD"]
+end
+
 package "fzf"
 package "git"
 package "htop"

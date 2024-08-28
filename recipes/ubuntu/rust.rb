@@ -3,11 +3,16 @@ end
 include_recipe "rust::user"
 cargo_home = node[:rust][:cargo_home]
 cargo_cmd = "#{cargo_home}/bin/cargo"
+
+cargo_init = <<~EOS
+  export RUSTC_WRAPPER=#{cargo_home}/bin/sccache
+EOS
 # define cargo_install command
 define :cargo_install, version: nil, locked: true, path: nil, git: nil,
-  features: nil, binname: nil do
+  features: nil, binname: nil, sscache: true do
   cargo_name = params[:name]
   binname = params[:binname] || params[:name]
+  cmd = "#{cargo_init} ;" if params[:sscache]
   cmd = "#{cargo_cmd} install #{cargo_name}"
   cmd << " --version #{params[:version]}" if params[:version]
   cmd << " --path #{params[:path]}" if params[:path]
@@ -21,7 +26,9 @@ define :cargo_install, version: nil, locked: true, path: nil, git: nil,
   end
 end
 
-cargo_install "sccache"
+cargo_install "sccache" do
+  sscache false
+end
 
 # add RUSTC_WRAPPER to .bashrc
 execute "add RUSTC_WRAPPER to .bashrc" do

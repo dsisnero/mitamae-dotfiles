@@ -14,3 +14,6 @@
 [submodule "plugins/mitamae-plugin-resource-apt-repository"]
 	path = plugins/mitamae-plugin-resource-apt-repository
 	url = https://github.com/moritzheiber/mitamae-plugin-resource-apt-repository.git
+[submodule "plugins/itamae-plugin-resource-encrypted_remote_file"]
+	path = plugins/itamae-plugin-resource-encrypted_remote_file
+	url = https://github.com/sue445/itamae-plugin-resource-encrypted_remote_file.git
